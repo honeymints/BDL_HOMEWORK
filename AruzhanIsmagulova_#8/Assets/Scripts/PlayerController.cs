@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,26 +8,34 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
 
     [SerializeField] private float _movementSpeed;
-    private float horizontalInput;
+    private float _horizontalInput;
     private float verticalInput;
-    private Vector3 movementInput;
+    public static PlayerController Player { get; private set; }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
+        Player = this;
+    }
+    // Update is called once per frame
+        
+    public void MovePlayer(Vector3 direction)
+    {
+        Vector3 movementDirection = new Vector3(direction.x, 0, direction.y);
+        movementDirection.Normalize();
+        Vector3 movement = Vector3.MoveTowards(transform.position, transform.position + movementDirection,
+            Time.deltaTime * _movementSpeed);
+        
+        transform.position = movement;
+        RotatePlayer(movement);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RotatePlayer(Vector3 direction)
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-
-        movementInput = new Vector3(horizontalInput, 0, verticalInput);
-
-        Vector3 movement = Vector3.Lerp(transform.position, transform.position + movementInput,
-            Time.deltaTime * _movementSpeed);
-        transform.position = movement;
+        if (direction != Vector3.zero)
+        {
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * _rotationSpeed);
+            Debug.Log(rotation);
+        }
     }
 }

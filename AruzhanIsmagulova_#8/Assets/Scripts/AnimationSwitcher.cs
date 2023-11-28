@@ -27,10 +27,8 @@ public class AnimationSwitcher : MonoBehaviour
                 animator.SetFloat("movementSpeed",2);  
                 break;
         }
-        //int stateHash = Animator.StringToHash(animationName);
-        
-        
-        
+        //int stateHash = Animator.StringToHash(animationName
+
     }
     public void BlendAnimation()
     {

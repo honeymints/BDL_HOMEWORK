@@ -35,6 +35,5 @@ public class HealthController : MonoBehaviour
     {
         
         Image.fillAmount= Mathf.Lerp(Image.fillAmount, _currentHP/_fullHP, Time.deltaTime*_speedOfFiling);
-        Debug.Log(Image.fillAmount);
     }
 }
