@@ -66,7 +66,7 @@ public class Player : MonoBehaviour, IPlayer
         }
         else
         {
-            DontDestroy();  //если это другая сцена, то игрок не уничтажается, и становится видимым
+            DontDestroy(); //если это другая сцена, то игрок не уничтажается, и становится видимым
             gameObject.SetActive(true); 
         }
 
@@ -101,11 +101,11 @@ public class Player : MonoBehaviour, IPlayer
     
     public void DontDestroy()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this);
     }
 
     public void SpawnInitialPosition()
     {
-        transform.position = _checkpoint.position;
+        transform.position = _checkpoint.position; //при первом спавне игрок будет спавниться на указанных координатах
     }
 }

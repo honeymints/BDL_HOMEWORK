@@ -11,15 +11,11 @@ public class ButtonEventHandler : MonoBehaviour
     [SerializeField] private GameObject panel;
     private void OnEnable()
     {
-        Debug.Log("HEY");
-        _buttonSettings.onClick.AddListener(EnableMenuPanel); 
-        
+        _buttonSettings.onClick.AddListener(EnableMenuPanel);
     }
     private void OnDisable()
     {
-        Debug.Log("HEYOOOOOOOO");
-        _buttonSettings.onClick.RemoveAllListeners(); 
-        
+        _buttonSettings.onClick.RemoveAllListeners();
     }
     
 

@@ -43,10 +43,8 @@ public class DataSaver : MonoBehaviour
     {
         if (File.Exists(Path.Combine(Application.streamingAssetsPath, "PLAYERDATA.json")))
         {
-            Debug.Log("Was saved");
             return true;
         }
-        Debug.Log("Wasn't saved");
         return false;
     }
 }
