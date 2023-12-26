@@ -1323,17 +1323,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1726453612
+--- !u!1001 &1649344990
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7782817483755605665, guid: 86a16e3db3a82aa41b4db7511b554f1c, type: 3}
-      propertyPath: _checkpoint
-      value: 
-      objectReference: {fileID: 2525033909080293692, guid: 55f15312339483640b8274915dea1148, type: 3}
     - target: {fileID: 7782817483755605669, guid: 86a16e3db3a82aa41b4db7511b554f1c, type: 3}
       propertyPath: m_RootOrder
       value: 9

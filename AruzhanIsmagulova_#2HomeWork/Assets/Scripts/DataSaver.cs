@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,6 +31,7 @@ public class DataSaver : MonoBehaviour
         //сохраняет файл с данными
         File.WriteAllText(path, json);
         Debug.Log("saved new json:" + json);
+        AssetDatabase.Refresh();
     }
     // загрузка данных
     public void LoadData()

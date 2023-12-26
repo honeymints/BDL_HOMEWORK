@@ -14,17 +14,27 @@ public class Player : MonoBehaviour, IPlayer
     
     public int index; //индекс сценки
     public int points; //число очков
-    
+
     private Vector3 _inputMovement;
     [SerializeField] private float speed;
     [SerializeField] private Transform _checkpoint;
     private int facingDirectionX = 1;
 
+
     private void Awake()
     {
-        Debug.Log("awake has been ");
         PlayerController = new PlayerMovement();
-        _Player = this;
+        //поняла почему не работал singleton, теперь он работает, вроде.
+        //если игрок существует и он не относится к оригинальному классу, то уничтожить
+        if (_Player != null && _Player!=this) 
+        {
+            Destroy(gameObject); 
+        }
+        else 
+        {
+            _Player = this;
+            DontDestroyOnLoad(_Player);
+        }
     }
 
     void Update()
@@ -55,53 +65,46 @@ public class Player : MonoBehaviour, IPlayer
     {
         Movement = PlayerController.Player.Move;
         Movement.Enable();
-        SceneManager.sceneLoaded += OnSceneLoad; //проверяет в какой сцене находиться игрок
+        SceneManager.sceneLoaded += OnSceneLoad;
+    }
+    
+    private void OnDisable()
+    {
+        Movement.Disable();
+        SceneManager.sceneLoaded -= OnSceneLoad;
     }
 
     void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if (scene.buildIndex.Equals(0))  //если это меню игрок станвоится невидимым
+        if (scene.buildIndex.Equals(0))  //если это меню, то игрока унижтожаем
         {
-            gameObject.SetActive(false);
+            Destroy(this.gameObject);
         }
         else
         {
-            DontDestroy(); //если это другая сцена, то игрок не уничтажается, и становится видимым
-            gameObject.SetActive(true); 
+            InitializePlayerData();  //если нет то инициализируем данные
         }
-
-        InitializePlayerData();
     }
-
     private void InitializePlayerData()
     {
-        if (DataSaver.DataSave.WasDataSaved())
+        if (DataSaver.DataSave.WasDataSaved()) //если игра была сохранена, то игрок присвает сохраненные значения
         {
+            Debug.Log("was saved");
             index = DataSaver.DataSave.data.SceneIndex;
             points = DataSaver.DataSave.data.Points;
             transform.position = DataSaver.DataSave.data.Position;
         }
-        else
+        else //если игра новая, то игрок получает изначальные данные
         {
-            index = SceneManager.GetActiveScene().buildIndex;
+            index = SceneManager.GetActiveScene().buildIndex; 
             points = 0;
             SpawnInitialPosition();
         }
     }
 
-    private void OnDisable()
-    {
-       Movement.Disable();
-    }
-
     public void CountPoints()
     {
         points += 1;
-    }
-    
-    public void DontDestroy()
-    {
-        DontDestroyOnLoad(this);
     }
 
     public void SpawnInitialPosition()
