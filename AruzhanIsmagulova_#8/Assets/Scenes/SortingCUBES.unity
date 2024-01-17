@@ -538,6 +538,31 @@ MonoBehaviour:
   inputField: {fileID: 1914385044}
   _button: {fileID: 498164933}
   offset: 3
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _cubes: []
 --- !u!4 &1494941828
 Transform:
   m_ObjectHideFlags: 0
@@ -999,7 +1024,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 141
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1026,7 +1051,7 @@ Transform:
   m_GameObject: {fileID: 2095645365}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12, y: 4.18, z: -14.6}
+  m_LocalPosition: {x: 13.34, y: 4.18, z: -14.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
